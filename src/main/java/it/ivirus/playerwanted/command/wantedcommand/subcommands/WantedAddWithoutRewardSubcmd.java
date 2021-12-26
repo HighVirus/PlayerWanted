@@ -19,7 +19,7 @@ import java.time.Duration;
 public class WantedAddWithoutRewardSubcmd extends SubCommand {
     @Override
     public void onCommand(CommandSender sender, Command command, String[] args) {
-        if (!sender.hasPermission("wanted.add")) {
+        if (!sender.hasPermission("playerwanted.add")) {
             adventure.sender(sender).sendMessage(Strings.ERROR_NO_PERMISSION.getFormattedString());
             return;
         }
