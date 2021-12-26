@@ -1,0 +1,14 @@
+lang: en_US
+reward: true
+
+#########################################################################
+#                       Database Config                                 #
+#########################################################################
+MySQL:
+  Enable: false                  #if false, SQLite will be used.
+  Database: "PlayerWanted"
+  Username: "PlayerWanted"
+  Password: "YourPassword"
+  Host: "localhost"
+  Port: 3306
+  SSL: false

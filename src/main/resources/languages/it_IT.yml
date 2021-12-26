@@ -1,0 +1,72 @@
+prefix: "&8(&bHoxija&8)&r"
+errors:
+  no-permission: "%prefix%&7: &cPermesso negato."
+  add-usage-with-reward: "%prefix%&7: &cUsa: /wanted add [player] [taglia] [motivo]"
+  add-usage-without-reward: "%prefix%&7: &cUsa: /wanted add [player] [motivo]"
+  remove-usage: "%prefix%&7: &cUsa: /wanted remove [player]"
+  only-player: "%prefix%&7: &cComando eseguibile solo da un giocatoore."
+  target-offline: "%prefix%&7: &cGTarget offline"
+  target-cannot-sender: "%prefix%&7: &cNon puoi essere tu il target"
+  target-already-wanted: "%prefix%&7: &cQuesto giocatore è gia un ricercato!"
+  invalid-value: "%prefix%&7: &cValore non valido!"
+
+info:
+  reload-executed: "%prefix%&7: Configurazioni ricaricate."
+  wanted-target-added: "%prefix%&7: Hai aggiunto &b%target_name% &7alla lista dei ricercati!"
+  wanted-target-removed: "%prefix%&7: Hai rimosso &b%target_name% &7dalla lista dei ricercati!"
+  player-wanted-with-reward-wessage:
+    - "&7Sei un ricercato!"
+    - "&7Motivo: &b%reason%"
+    - "&7Taglia: &b%reward%"
+  player-wanted-without-reward-wessage:
+    - "&7Sei un ricercato!"
+    - "&7Motivo: &b%reason%"
+  player-wanted-title: "%prefix%&7: &cSei un ricercato!"
+  player-not-wanted-message: "%prefix%&7: &cNon sei più un ricercato."
+  player-not-wanted-title: "%prefix%&7: &cNon sei più un ricercato."
+  reward-message: "%prefix%&7: &7Hai ucciso &c%target_name%&7, hai guadagnato &c%reward%&7."
+  help:
+    - "&7Comandi disponibili:"
+    - "&b/wanted help"
+    - "&b/wanted add [player] [taglia] [motivo]"
+    - "&b/wanted remove [player]"
+    - "&b/wanted list {page}"
+    - "&b/wanted gui"
+  help-admin:
+    - "&8&m----------------"
+    - "&b/wanted reload"
+  list:
+    header: "%prefix%&7: &bLista ricercati, pagina(&f%page%&b)"
+    list-format-with-reward: "&b- &7%player_name%&b, &7%reward%&b, &7%insert_date%&b, &7%reason%"
+    list-format-without-reward: "&b- &7%player_name%&b, &7%insert_date%&b, &7%reason%"
+
+gui:
+  wanted: #-------------------------------------------Wanted GUI
+    title: "&1Lista ricercati:"
+    previous-button:
+      name: "&fPagina precedente"
+      item: PAPER
+    next-button:
+      name: "&fProssima pagina"
+      item: PAPER
+    current-page-button:
+      name: "&fPagina corrente: &b%current_page%"
+      item: PAPER
+    wanted-account:
+      name: "&c%player_name%"
+      lore-with-reward:
+        - "&7&m----------------------------"
+        - "&7Giocatore: &b%player_name%."
+        - "&7Motivo: &b%reason%."
+        - "&7Taglia: &b%reward%."
+        - "&7Data inserimento: &b%insert_date%."
+        - "&7&m----------------------------"
+      lore-without-reward:
+        - "&7&m----------------------------"
+        - "&7Giocatore: &b%player_name%."
+        - "&7Motivo: &b%reason%."
+        - "&7Data inserimento: &b%insert_date%."
+        - "&7&m----------------------------"
+    filler:
+      name: " "
+      item: BLACK_STAINED_GLASS_PANE

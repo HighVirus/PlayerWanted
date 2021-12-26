@@ -1,0 +1,8 @@
+name: PlayerWanted
+main: it.ivirus.playerwanted.PlayerWantedMain
+version: ${project.version}
+api-version: 1.13
+author: iVirus
+commands:
+  wanted:
+    description: Main command

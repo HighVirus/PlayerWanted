@@ -1,0 +1,72 @@
+prefix: "&8(&bHoxija&8)&r"
+errors:
+  no-permission: "%prefix%&7: &cYou do not have permission to do that."
+  add-usage-with-reward: "%prefix%&7: &cUse: /wanted add [player] [reward] [reason]"
+  add-usage-without-reward: "%prefix%&7: &cUse: /wanted add [player] [reason]"
+  remove-usage: "%prefix%&7: &cUse: /wanted remove [player]"
+  only-player: "%prefix%&7: &cThis command can only be executed by a player."
+  target-offline: "%prefix%&7: &cTarget offline"
+  target-cannot-sender: "%prefix%&7: &cYou cannot be the target"
+  target-already-wanted: "%prefix%&7: &cThis player is already wanted!"
+  invalid-value: "%prefix%&7: &cInvalid value!"
+
+info:
+  reload-executed: "%prefix%&7: Config and lang reloaded."
+  wanted-target-added: "%prefix%&7: You added &b%target_name% &7into wanted list!"
+  wanted-target-removed: "%prefix%&7: You removed &b%target_name% &7from wanted list!"
+  player-wanted-with-reward-wessage:
+    - "&7You are wanted!"
+    - "&7Reason: &b%reason%"
+    - "&7Reward: &b%reward%"
+  player-wanted-without-reward-wessage:
+    - "&7You are wanted!"
+    - "&7Reason: &b%reason%"
+  player-wanted-title: "%prefix%&7: &cYou are wanted!"
+  player-not-wanted-message: "%prefix%&7: &cYou are no longer wanted."
+  player-not-wanted-title: "%prefix%&7: &cYou are no longer wanted."
+  reward-message: "%prefix%&7: &7You killed &c%target_name%&7, reward &c%reward%&7."
+  help:
+    - "&7Commands available:"
+    - "&b/wanted help"
+    - "&b/wanted add [player] [reward] [reason]"
+    - "&b/wanted remove [player]"
+    - "&b/wanted list {page}"
+    - "&b/wanted gui"
+  help-admin:
+    - "&8&m----------------"
+    - "&b/wanted reload"
+  list:
+    header: "%prefix%&7: &bWanted list, page(&f%page%&b)"
+    list-format-with-reward: "&b- &7%player_name%&b, &7%reward%&b, &7%insert_date%&b, &7%reason%"
+    list-format-without-reward: "&b- &7%player_name%&b, &7%insert_date%&b, &7%reason%"
+
+gui:
+  wanted: #-------------------------------------------Wanted GUI
+    title: "&1Wanted list:"
+    previous-button:
+      name: "&fPrevious page"
+      item: PAPER
+    next-button:
+      name: "&fNext page"
+      item: PAPER
+    current-page-button:
+      name: "&fCurrent page: &b%current_page%"
+      item: PAPER
+    wanted-account:
+      name: "&c%player_name%"
+      lore-with-reward:
+        - "&7&m----------------------------"
+        - "&7Player name: &b%player_name%."
+        - "&7Reason: &b%reason%."
+        - "&7Reward: &b%reward%."
+        - "&7Insert date: &b%insert_date%."
+        - "&7&m----------------------------"
+      lore-without-reward:
+        - "&7&m----------------------------"
+        - "&7Player name: &b%player_name%."
+        - "&7Reason: &b%reason%."
+        - "&7Insert date: &b%insert_date%."
+        - "&7&m----------------------------"
+    filler:
+      name: " "
+      item: BLACK_STAINED_GLASS_PANE
