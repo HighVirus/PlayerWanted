@@ -1,6 +1,5 @@
 package it.ivirus.playerwanted;
 
-import fr.minuskube.inv.InventoryManager;
 import it.ivirus.playerwanted.command.wantedcommand.WantedCommandHandler;
 import it.ivirus.playerwanted.command.wantedcommand.WantedCommandTabCompleter;
 import it.ivirus.playerwanted.data.WantedData;
@@ -34,8 +33,6 @@ public class PlayerWantedMain extends JavaPlugin {
     private FileConfiguration langConfig;
     private Economy economy;
     private BukkitAudiences adventure;
-    @Getter
-    private static InventoryManager invManager;
 
     private final Executor executor = runnable -> Bukkit.getScheduler().runTaskAsynchronously(this, runnable);
 
@@ -57,9 +54,6 @@ public class PlayerWantedMain extends JavaPlugin {
                 return;
             }
         }
-
-        invManager = new InventoryManager(this);
-        invManager.init();
 
         this.setupDb();
         WantedData.getInstance().loadWantedPlayers();

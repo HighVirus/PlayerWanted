@@ -19,6 +19,6 @@ public class WantedGuiSubcmd extends SubCommand {
             return;
         }
         Player player = (Player) sender;
-        GuiWantedMenu.INVENTORY.open(player);
+        new GuiWantedMenu().getPaginatedGui().open(player);
     }
 }

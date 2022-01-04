@@ -64,7 +64,7 @@ public class WantedAddWithRewardSubcmd extends SubCommand {
             Player onlineTarget = target.getPlayer();
             adventure.player(onlineTarget).sendMessage(Strings.getFormattedString(Strings.INFO_PLAYER_WANTED_WITH_REWARD_MESSAGE.getString()
                     .replaceAll("%reason%", reason.toString())
-                    .replaceAll("%headmoney%", String.format("%.2f", value)
+                    .replaceAll("%reward%", String.format("%.2f", value)
                     )));
             onlineTarget.sendTitle(Strings.getOldFormatString(LegacyComponentSerializer.legacyAmpersand().serialize(Strings.INFO_PLAYER_WANTED_TITLE.getFormattedString())), " ", 10, 40, 20);
         }

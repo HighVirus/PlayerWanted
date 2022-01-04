@@ -2,7 +2,6 @@ package it.ivirus.playerwanted.command.wantedcommand.subcommands;
 
 import it.ivirus.playerwanted.command.SubCommand;
 import it.ivirus.playerwanted.data.WantedData;
-import it.ivirus.playerwanted.gui.GuiWantedMenu;
 import it.ivirus.playerwanted.util.PlayerWanted;
 import it.ivirus.playerwanted.util.Strings;
 import it.ivirus.playerwanted.util.WantedUtil;
