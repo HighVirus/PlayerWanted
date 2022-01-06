@@ -33,11 +33,24 @@ public class WantedRemoveSubcmd extends SubCommand {
             return;
         }
         PlayerWanted targetWanted = WantedData.getInstance().getPlayerWantedMap().get(target.getUniqueId());
+
+        double money = targetWanted.getReward();
+
+        OfflinePlayer playerSubmitter = Bukkit.getOfflinePlayer(targetWanted.getPlayerSubmitter());
+        plugin.getEconomy().depositPlayer(playerSubmitter, money);
+
         WantedData.getInstance().getPlayerWantedList().remove(targetWanted);
         WantedData.getInstance().getPlayerWantedMap().remove(target.getUniqueId());
         plugin.getSql().removeWantedPlayer(target.getUniqueId().toString());
-        adventure.player(player).sendMessage(Strings.getFormattedString(Strings.INFO_WANTED_TARGET_REMOVED.getString()
-                .replaceAll("%target_name%", target.getName())));
+        if (money == 0){
+            adventure.player(player).sendMessage(Strings.getFormattedString(Strings.INFO_WANTED_TARGET_REMOVED_WITHOUT_REWARD.getString()
+                    .replaceAll("%target_name%", target.getName())));
+        } else {
+            adventure.player(player).sendMessage(Strings.getFormattedString(Strings.INFO_WANTED_TARGET_REMOVED_WITH_REWARD.getString()
+                    .replaceAll("%target_name%", target.getName())
+                    .replaceAll("%reward%", String.format("%.2f", money))
+            ));
+        }
         if (target.isOnline()) {
             Player onlineTarget = target.getPlayer();
             adventure.player(onlineTarget).sendMessage(Strings.INFO_PLAYER_NOT_WANTED_MESSAGE.getFormattedString());

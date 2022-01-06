@@ -40,14 +40,15 @@ public abstract class SqlManager {
 
     protected abstract Connection getJdbcUrl() throws SQLException, ClassNotFoundException;
 
-    public void addWantedPlayer(String playerUUID, String playerName, String reason, double headMoney, Date registrationDate) {
-        try (PreparedStatement statement = connection.prepareStatement("INSERT INTO " + TABLE_WANTED_PLAYER + " (AccountID, PlayerName, Reason, HeadMoney, Date)" +
-                " values (?,?,?,?,?)")) {
+    public void addWantedPlayer(String playerUUID, String playerName, String submitterUUID, String reason, double headMoney, Date registrationDate) {
+        try (PreparedStatement statement = connection.prepareStatement("INSERT INTO " + TABLE_WANTED_PLAYER + " (AccountID, PlayerName, SubmitterID, Reason, Reward, Date)" +
+                " values (?,?,?,?,?,?)")) {
             statement.setString(1, playerUUID);
             statement.setString(2, playerName);
-            statement.setString(3, reason);
-            statement.setDouble(4, headMoney);
-            statement.setDate(5, registrationDate);
+            statement.setString(3, submitterUUID);
+            statement.setString(4, reason);
+            statement.setDouble(5, headMoney);
+            statement.setDate(6, registrationDate);
             statement.executeUpdate();
         } catch (SQLException ex) {
             ex.printStackTrace();
@@ -69,7 +70,7 @@ public abstract class SqlManager {
                 List<PlayerWanted> playerWantedList = new ArrayList<>();
                 ResultSet resultSet = statement.executeQuery();
                 while (resultSet.next()) {
-                    playerWantedList.add(new PlayerWanted(UUID.fromString(resultSet.getString("AccountID")), resultSet.getString("PlayerName"), resultSet.getString("Reason"), resultSet.getDouble("HeadMoney"), resultSet.getDate("Date")));
+                    playerWantedList.add(new PlayerWanted(UUID.fromString(resultSet.getString("AccountID")), resultSet.getString("PlayerName"), UUID.fromString(resultSet.getString("SubmitterID")), resultSet.getString("Reason"), resultSet.getDouble("Reward"), resultSet.getDate("Date")));
                 }
                 return playerWantedList;
             } catch (SQLException ex) {

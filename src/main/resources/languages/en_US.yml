@@ -8,19 +8,26 @@ errors:
   target-offline: "%prefix%&7: &cTarget offline"
   target-cannot-sender: "%prefix%&7: &cYou cannot be the target"
   target-already-wanted: "%prefix%&7: &cThis player is already wanted!"
+  not-enough-money: "%prefix%&7: &cYou do not have enough money!"
   invalid-value: "%prefix%&7: &cInvalid value!"
 
 info:
   reload-executed: "%prefix%&7: Config and lang reloaded."
-  wanted-target-added: "%prefix%&7: You added &b%target_name% &7into wanted list!"
-  wanted-target-removed: "%prefix%&7: You removed &b%target_name% &7from wanted list!"
-  player-wanted-with-reward-wessage:
+  wanted-target-added-without-reward: "%prefix%&7: You added &b%target_name% &7into wanted list!"
+  wanted-target-added-with-reward:
+    - "%prefix%&7: You added &b%target_name% &7into wanted list!"
+    - "%prefix%&7: &a%reward% &7have been detracted from your balance."
+  wanted-target-removed-without-reward: "%prefix%&7: You removed &b%target_name% &7from wanted list!"
+  wanted-target-removed-with-reward:
+    - "%prefix%&7: You removed &b%target_name% &7from wanted list!"
+    - "%prefix%&7: &a%reward% have been added to your balance."
+  player-wanted-without-reward-message:
+    - "&7You are wanted!"
+    - "&7Reason: &b%reason%"
+  player-wanted-with-reward-message:
     - "&7You are wanted!"
     - "&7Reason: &b%reason%"
     - "&7Reward: &b%reward%"
-  player-wanted-without-reward-wessage:
-    - "&7You are wanted!"
-    - "&7Reason: &b%reason%"
   player-wanted-title: "%prefix%&7: &cYou are wanted!"
   player-not-wanted-message: "%prefix%&7: &cYou are no longer wanted."
   player-not-wanted-title: "%prefix%&7: &cYou are no longer wanted."
@@ -60,12 +67,14 @@ gui:
         - "&7Reason: &b%reason%."
         - "&7Reward: &b%reward%."
         - "&7Insert date: &b%insert_date%."
+        - "&7Submitter: &b%submitter%"
         - "&7&m----------------------------"
       lore-without-reward:
         - "&7&m----------------------------"
         - "&7Player name: &b%player_name%."
         - "&7Reason: &b%reason%."
         - "&7Insert date: &b%insert_date%."
+        - "&7Submitter: &b%submitter%"
         - "&7&m----------------------------"
     filler:
       name: " "

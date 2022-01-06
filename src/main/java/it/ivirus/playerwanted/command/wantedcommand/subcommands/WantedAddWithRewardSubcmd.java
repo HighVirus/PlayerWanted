@@ -25,6 +25,7 @@ public class WantedAddWithRewardSubcmd extends SubCommand {
             adventure.sender(sender).sendMessage(Strings.ERROR_ONLY_PLAYER.getFormattedString());
             return;
         }
+        Player player = (Player) sender;
         if (args.length < 4) {
             adventure.sender(sender).sendMessage(Strings.ERROR_ADD_WITH_REWARD_USAGE.getFormattedString());
             return;
@@ -38,12 +39,20 @@ public class WantedAddWithRewardSubcmd extends SubCommand {
             adventure.sender(sender).sendMessage(Strings.ERROR_INVALID_VALUE.getFormattedString());
             return;
         }
+
+        OfflinePlayer target = Bukkit.getOfflinePlayer(args[1]);
+        double playerMoney = plugin.getEconomy().getBalance(player);
+
+        if (value > playerMoney){
+            adventure.sender(sender).sendMessage(Strings.ERROR_NOT_ENOUGH_MONEY.getFormattedString());
+            return;
+        }
+
         StringBuilder reason = new StringBuilder();
         for (int i = 3; i < args.length; i++) {
             reason.append(" ").append(args[i]);
         }
-        Player player = (Player) sender;
-        OfflinePlayer target = Bukkit.getOfflinePlayer(args[1]);
+
         Date date = new Date(System.currentTimeMillis());
         if (player.equals(target)) {
             adventure.player(player).sendMessage(Strings.ERROR_TARGET_CANNOT_SENDER.getFormattedString());
@@ -53,12 +62,16 @@ public class WantedAddWithRewardSubcmd extends SubCommand {
             adventure.sender(sender).sendMessage(Strings.ERROR_TARGET_ALREADY_WANTED.getFormattedString());
             return;
         }
-        PlayerWanted playerWanted = new PlayerWanted(target.getUniqueId(), target.getName(), reason.toString(), value, date);
+
+        PlayerWanted playerWanted = new PlayerWanted(target.getUniqueId(), target.getName(), player.getUniqueId(), reason.toString(), value, date);
         WantedData.getInstance().getPlayerWantedMap().put(target.getUniqueId(), playerWanted);
         WantedData.getInstance().getPlayerWantedList().add(playerWanted);
-        plugin.getSql().addWantedPlayer(target.getUniqueId().toString(), target.getName(), reason.toString(), value, date);
-        adventure.player(player).sendMessage(Strings.getFormattedString(Strings.INFO_WANTED_TARGET_ADDED.getString()
-                .replaceAll("%target_name%", target.getName())));
+        plugin.getEconomy().withdrawPlayer(player, value);
+        plugin.getSql().addWantedPlayer(target.getUniqueId().toString(), target.getName(), player.getUniqueId().toString(), reason.toString(), value, date);
+        adventure.player(player).sendMessage(Strings.getFormattedString(Strings.INFO_WANTED_TARGET_ADDED_WITH_REWARD.getString()
+                .replaceAll("%target_name%", target.getName())
+                .replaceAll("%reward%", String.format("%.2f", value))
+        ));
 
         if (target.isOnline()) {
             Player onlineTarget = target.getPlayer();

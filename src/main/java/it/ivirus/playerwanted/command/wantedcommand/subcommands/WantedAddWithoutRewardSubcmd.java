@@ -46,18 +46,18 @@ public class WantedAddWithoutRewardSubcmd extends SubCommand {
             adventure.sender(sender).sendMessage(Strings.ERROR_TARGET_ALREADY_WANTED.getFormattedString());
             return;
         }
-        PlayerWanted playerWanted = new PlayerWanted(target.getUniqueId(), target.getName(), reason.toString(), 0, date);
+        PlayerWanted playerWanted = new PlayerWanted(target.getUniqueId(), target.getName(), player.getUniqueId(), reason.toString(), 0, date);
         WantedData.getInstance().getPlayerWantedMap().put(target.getUniqueId(), playerWanted);
         WantedData.getInstance().getPlayerWantedList().add(playerWanted);
-        plugin.getSql().addWantedPlayer(target.getUniqueId().toString(), target.getName(), reason.toString(), 0, date);
-        adventure.player(player).sendMessage(Strings.getFormattedString(Strings.INFO_WANTED_TARGET_ADDED.getString()
+        plugin.getSql().addWantedPlayer(target.getUniqueId().toString(), target.getName(), player.getUniqueId().toString(), reason.toString(), 0, date);
+        adventure.player(player).sendMessage(Strings.getFormattedString(Strings.INFO_WANTED_TARGET_ADDED_WITHOUT_REWARD.getString()
                 .replaceAll("%target_name%", target.getName())));
 
         if (target.isOnline()) {
             Player onlineTarget = target.getPlayer();
             adventure.player(onlineTarget).sendMessage(Strings.getFormattedString(Strings.INFO_PLAYER_WANTED_WITHOUT_REWARD_MESSAGE.getString()
                     .replaceAll("%reason%", reason.toString())
-                    ));
+            ));
             onlineTarget.sendTitle(Strings.getOldFormatString(LegacyComponentSerializer.legacyAmpersand().serialize(Strings.INFO_PLAYER_WANTED_TITLE.getFormattedString())), " ", 10, 40, 20);
         }
 

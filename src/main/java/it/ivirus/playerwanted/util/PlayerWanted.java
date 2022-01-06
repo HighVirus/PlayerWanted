@@ -11,6 +11,7 @@ import java.util.UUID;
 public class PlayerWanted {
     private final UUID playerUUID;
     private final String playerName;
+    private final UUID playerSubmitter;
     private final String reason;
     private final double reward;
     private final Date date;
@@ -20,6 +21,7 @@ public class PlayerWanted {
         return "PlayerWanted{" +
                 "playerUUID=" + playerUUID +
                 ", playerName='" + playerName + '\'' +
+                ", playerSubmitter=" + playerSubmitter +
                 ", reason='" + reason + '\'' +
                 ", reward=" + reward +
                 ", date=" + date +

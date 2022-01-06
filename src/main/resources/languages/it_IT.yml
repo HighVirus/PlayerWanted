@@ -8,19 +8,26 @@ errors:
   target-offline: "%prefix%&7: &cGTarget offline"
   target-cannot-sender: "%prefix%&7: &cNon puoi essere tu il target"
   target-already-wanted: "%prefix%&7: &cQuesto giocatore è gia un ricercato!"
+  not-enough-money: "%prefix%&7: &cNon hai abbastanza soldi!"
   invalid-value: "%prefix%&7: &cValore non valido!"
 
 info:
   reload-executed: "%prefix%&7: Configurazioni ricaricate."
-  wanted-target-added: "%prefix%&7: Hai aggiunto &b%target_name% &7alla lista dei ricercati!"
-  wanted-target-removed: "%prefix%&7: Hai rimosso &b%target_name% &7dalla lista dei ricercati!"
-  player-wanted-with-reward-wessage:
+  wanted-target-added-without-reward: "%prefix%&7: Hai aggiunto &b%target_name% &7alla lista dei ricercati!"
+  wanted-target-added-with-reward:
+    - "%prefix%&7: Hai aggiunto &b%target_name% &7alla lista dei ricercati!"
+    - "%prefix%&7: Sono stati detratti dal tuo conto &a%reward%&7."
+  wanted-target-removed-without-reward: "%prefix%&7: Hai rimosso &b%target_name% &7dalla lista dei ricercati!"
+  wanted-target-removed-with-reward:
+    - "%prefix%&7: Hai rimosso &b%target_name% &7dalla lista dei ricercati!"
+    - "%prefix%&7: Sono stati aggiunti &a%reward% &7al tuo conto."
+  player-wanted-without-reward-message:
+    - "&7Sei un ricercato!"
+    - "&7Motivo: &b%reason%"
+  player-wanted-with-reward-message:
     - "&7Sei un ricercato!"
     - "&7Motivo: &b%reason%"
     - "&7Taglia: &b%reward%"
-  player-wanted-without-reward-wessage:
-    - "&7Sei un ricercato!"
-    - "&7Motivo: &b%reason%"
   player-wanted-title: "%prefix%&7: &cSei un ricercato!"
   player-not-wanted-message: "%prefix%&7: &cNon sei più un ricercato."
   player-not-wanted-title: "%prefix%&7: &cNon sei più un ricercato."
@@ -60,12 +67,14 @@ gui:
         - "&7Motivo: &b%reason%."
         - "&7Taglia: &b%reward%."
         - "&7Data inserimento: &b%insert_date%."
+        - "&7Inserito da: %submitter%."
         - "&7&m----------------------------"
       lore-without-reward:
         - "&7&m----------------------------"
         - "&7Giocatore: &b%player_name%."
         - "&7Motivo: &b%reason%."
         - "&7Data inserimento: &b%insert_date%."
+        - "&7Inserito da: %submitter%."
         - "&7&m----------------------------"
     filler:
       name: " "

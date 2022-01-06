@@ -11,7 +11,9 @@ import it.ivirus.playerwanted.util.Strings;
 import it.ivirus.playerwanted.util.WantedUtil;
 import lombok.Getter;
 import net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer;
+import org.bukkit.Bukkit;
 import org.bukkit.Material;
+import org.bukkit.OfflinePlayer;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -46,13 +48,6 @@ public class GuiWantedMenu {
         paginatedGui.setItem(6, 7, ItemBuilder.from(this.nextPageSlot()).asGuiItem(event -> paginatedGui.next()));
     }
 
-    private void fill() {
-        for (int i = 0; i < paginatedGui.getInventory().getSize(); i++) {
-            if (paginatedGui.getGuiItem(i) == null)
-                paginatedGui.setItem(i, ItemBuilder.from(this.fillerItem()).asGuiItem());
-
-        }
-    }
 
     private ItemStack nextPageSlot() {
         Material material = Material.matchMaterial(langConfig.getString("gui.wanted.next-button.item"));
@@ -98,6 +93,7 @@ public class GuiWantedMenu {
         itemMeta.setDisplayName(Strings.getOldFormatString(LegacyComponentSerializer.legacyAmpersand().serialize(Strings.getFormattedString(langConfig.getString("gui.wanted.wanted-account.name")
                 .replaceAll("%player_name%", playerWanted.getPlayerName())))));
         List<String> loreEmptySlot = new ArrayList<>();
+        OfflinePlayer submitter = Bukkit.getOfflinePlayer(playerWanted.getPlayerSubmitter());
         if (playerWanted.getReward() != 0) {
             for (String s : langConfig.getStringList("gui.wanted.wanted-account.lore-with-reward")) {
                 loreEmptySlot.add(Strings.getOldFormatString(LegacyComponentSerializer.legacyAmpersand().serialize(Strings.getFormattedString(s
@@ -105,6 +101,7 @@ public class GuiWantedMenu {
                         .replaceAll("%reason%", playerWanted.getReason())
                         .replaceAll("%reward%", String.format("%.2f", playerWanted.getReward()))
                         .replaceAll("%insert_date%", WantedUtil.dateFormat.format(playerWanted.getDate()))
+                        .replaceAll("%submitter%", submitter.getName())
                 ))));
             }
         } else {
@@ -113,6 +110,7 @@ public class GuiWantedMenu {
                         .replaceAll("%player_name%", playerWanted.getPlayerName())
                         .replaceAll("%reason%", playerWanted.getReason())
                         .replaceAll("%insert_date%", WantedUtil.dateFormat.format(playerWanted.getDate()))
+                        .replaceAll("%submitter%", submitter.getName())
                 ))));
             }
         }

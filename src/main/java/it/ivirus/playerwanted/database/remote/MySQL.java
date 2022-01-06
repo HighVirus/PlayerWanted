@@ -44,7 +44,7 @@ public class MySQL extends ConnectionPoolManager {
     @Override
     public void createTables() throws SQLException {
         PreparedStatement data = getConnection().prepareStatement("create TABLE if not exists `" + super.TABLE_WANTED_PLAYER + "` " +
-                "(ID INTEGER PRIMARY KEY AUTOINCREMENT, AccountID VARCHAR(100), PlayerName VARCHAR(100), Reason VARCHAR(100), HeadMoney DOUBLE, Date DATETIME NOT NULL)");
+                "(ID INTEGER PRIMARY KEY AUTOINCREMENT, AccountID VARCHAR(100), PlayerName VARCHAR(100), SubmitterID VARCHAR(100), Reason VARCHAR(100), Reward DOUBLE, Date DATETIME NOT NULL)");
         data.executeUpdate();
     }
 

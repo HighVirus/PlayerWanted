@@ -42,10 +42,13 @@ public class PlayerListener implements Listener {
             PlayerWanted playerWanted = WantedData.getInstance().getPlayerWantedMap().get(player.getUniqueId());
             if ((player.getHealth() - event.getDamage()) <= 0) {
                 plugin.getEconomy().depositPlayer(offlineKiller, playerWanted.getReward());
-                killer.sendMessage(Strings.INFO_REWARD_MESSAGE.getString()
+                plugin.getAdventure().player(killer).sendMessage(Strings.getFormattedString(Strings.INFO_REWARD_MESSAGE.getString()
                         .replaceAll("%target_name%", player.getName())
                         .replaceAll("%reward%", String.format("%.2f", playerWanted.getReward()))
-                );
+                ));
+                plugin.getSql().removeWantedPlayer(player.getUniqueId().toString());
+                WantedData.getInstance().getPlayerWantedMap().remove(player.getUniqueId());
+                WantedData.getInstance().getPlayerWantedList().remove(playerWanted);
             }
         }
     }
