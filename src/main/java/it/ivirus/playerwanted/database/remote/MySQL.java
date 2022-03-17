@@ -42,6 +42,20 @@ public class MySQL extends ConnectionPoolManager {
     }
 
     @Override
+    public synchronized Connection getConnection() throws SQLException {
+        if (this.getDataSource() == null) {
+            throw new SQLException("Unable to get a connection from the pool. (hikari is null)");
+        }
+
+        Connection connection = this.getDataSource().getConnection();
+        if (connection == null) {
+            throw new SQLException("Unable to get a connection from the pool. (getConnection is null)");
+        }
+
+        return connection;
+    }
+
+    @Override
     public void createTables() throws SQLException {
         PreparedStatement data = getConnection().prepareStatement("create TABLE if not exists `" + super.TABLE_WANTED_PLAYER + "` " +
                 "(ID INTEGER PRIMARY KEY AUTOINCREMENT, AccountID VARCHAR(100), PlayerName VARCHAR(100), SubmitterID VARCHAR(100), Reason VARCHAR(100), Reward DOUBLE, Date DATETIME NOT NULL)");

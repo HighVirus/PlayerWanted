@@ -13,8 +13,7 @@ import java.util.concurrent.CompletableFuture;
 public abstract class SqlManager {
     protected final String TABLE_WANTED_PLAYER = "WantedPlayer";
     protected final PlayerWantedMain plugin;
-    @Getter
-    private Connection connection;
+    protected Connection connection;
 
     public SqlManager(PlayerWantedMain plugin) {
         this.plugin = plugin;
@@ -33,6 +32,8 @@ public abstract class SqlManager {
             e.printStackTrace();
         }
     }
+
+    public abstract Connection getConnection() throws SQLException, ClassNotFoundException;
 
     private void setConnection(Connection connection) {
         this.connection = connection;

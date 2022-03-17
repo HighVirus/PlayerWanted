@@ -26,6 +26,14 @@ public class SQLite extends SqlManager {
     }
 
     @Override
+    public Connection getConnection() throws SQLException {
+        if (this.connection == null || this.connection.isClosed()) {
+            this.connection = getJdbcUrl();
+        }
+        return this.connection;
+    }
+
+    @Override
     public void createTables() throws SQLException {
         PreparedStatement data = getConnection().prepareStatement("create TABLE if not exists `" + super.TABLE_WANTED_PLAYER + "` " +
                 "(ID INTEGER PRIMARY KEY AUTOINCREMENT, AccountID VARCHAR(100), PlayerName VARCHAR(100), SubmitterID VARCHAR(100), Reason VARCHAR(100), Reward DOUBLE, Date DATETIME NOT NULL)");
